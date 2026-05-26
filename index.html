@@ -1046,7 +1046,7 @@ a{text-decoration:none;color:inherit;}
 </div>
 
 <script>
-const API_BASE = 'https://api.pokemaniacoin.fun';
+const API_BASE = 'https://immunize-compile-musky.ngrok-free.dev';
 const API_URL = API_BASE + '/api/state';
 const POLL_MS = 2000;
 const $ = id => document.getElementById(id);
@@ -1560,7 +1560,7 @@ function setOffline(yes){
 /* Poll */
 async function poll(){
   let d;
-  try{ const r=await fetch(API_URL); if(!r.ok) throw 0; d=await r.json(); setOffline(false); }
+  try{ const r=await fetch(API_URL,{headers:{'ngrok-skip-browser-warning':'1'}}); if(!r.ok) throw 0; d=await r.json(); setOffline(false); }
   catch(e){ setOffline(true); return; }
   _data=d;
   if(d.magic_phrase){ const el=$('hero-magic-phrase'); if(el) el.textContent=d.magic_phrase; }
