@@ -1405,7 +1405,9 @@ function renderMyPokemon(d){
   const totalScore=holders.reduce((s,h)=>s+(h.score||0),0)||1;
   const vault=d.shift_vault_usd??d.prize_pool_usd??0;
   const thresholds=d.pokemon_config?.evolution_thresholds||[100000,500000,1000000,5000000,10000000];
-  const hpPct=Math.min(100,(lv/5)*100);
+  const _evoT=[0,900,1800,2700,3600];
+  const _secsH=me.seconds_held||0;
+  const hpPct=lv>=5?100:Math.min(100,Math.round((_secsH-_evoT[lv-1])/(_evoT[lv]-_evoT[lv-1])*100));
 
   let hpSteps='';
   for(let i=0;i<5;i++){
